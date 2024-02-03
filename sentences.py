@@ -28,29 +28,41 @@ def count_vectorize_sentences(list_of_sentences):
     cv = CountVectorizer(stop_words="english")
     cv_sentences = np.array(cv.fit_transform(sentence_strings).todense())
 
-    for sentence, cv_sentence in zip(list_of_sentences, cv_sentences):
-        sentence.cv_sentence = cv_sentence
+    for sentence, vector in zip(list_of_sentences, cv_sentences):
+        sentence.sentence_vector = vector
 
     return cv_sentences
+
+def tfidf_vectorize_sentences(list_of_sentences):
+
+    sentence_strings = [sentence.sentence_string for sentence in list_of_sentences]
+    
+    tfidf = TfidfVectorizer(stop_words="english")
+    tfidf_sentences = np.array(tfidf.fit_transform(sentence_strings).todense())
+
+    for sentence, vector in zip(list_of_sentences, tfidf_sentences):
+        sentence.sentence_vector = vector
+
+    return tfidf_sentences
 
 
 def find_most_similar_sentence(
     target_sentence,
     list_of_sentences
 ):
-
+    
     # make a list of all count vectorized forms of a sentence
-    cv_sentences = [sentence.cv_sentence for sentence in list_of_sentences]
+    vector_sentences = [sentence.sentence_vector for sentence in list_of_sentences]
     
     # define an array of cosine similarities of all sentences compared to a target sentence
     sentence_similarities = cosine_similarity(
-        cv_sentences, [target_sentence.cv_sentence]
+        vector_sentences, [target_sentence.sentence_vector]
     )
 
     highest_similarity_score = 0
     highest_similarity_index = 0
     for i, similarity_score in enumerate(sentence_similarities):
-        # A similarity score of 1 means it is most likely the same sentence
+        # A similarity score of .9999 means it is most likely the same sentence
         # there could be sentences with the same words in a different order.
         if similarity_score[0] <= .999999 and similarity_score > highest_similarity_score:
             highest_similarity_score = similarity_score
@@ -90,7 +102,7 @@ class Sentence:
         self.word_count = len(self.word_tokens)
         self.sentiment_score = calculate_sentence_sentiment(self.sentence_string)
         self.date = ''
-        self.cv_sentence = []
+        self.sentence_vector = []
         # TODO Add timestamps to journal sentences
         # TODO Add POS to the tokens
         

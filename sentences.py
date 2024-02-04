@@ -23,6 +23,13 @@ def find_sentences(document_string):
 
 def count_vectorize_sentences(list_of_sentences):
 
+    """Take a list of Sentence objects and count vectorizee them
+
+    :Paramaters: a list of Sentence objects
+    :return: the fit countvectorizer and an array of vectorized sentences
+    :rtype: tuple
+    """
+
     sentence_strings = [sentence.sentence_string for sentence in list_of_sentences]
     
     cv = CountVectorizer(stop_words="english")
@@ -31,9 +38,15 @@ def count_vectorize_sentences(list_of_sentences):
     for sentence, vector in zip(list_of_sentences, cv_sentences):
         sentence.sentence_vector = vector
 
-    return cv_sentences
+    return cv, cv_sentences
 
 def tfidf_vectorize_sentences(list_of_sentences):
+
+    """Given a list of sentence objects, tfidf vectorise the sentences
+
+    :return: the fit vectorizer and the a numpy array of vectors
+    :rtype: tuple
+    """
 
     sentence_strings = [sentence.sentence_string for sentence in list_of_sentences]
     
@@ -43,7 +56,7 @@ def tfidf_vectorize_sentences(list_of_sentences):
     for sentence, vector in zip(list_of_sentences, tfidf_sentences):
         sentence.sentence_vector = vector
 
-    return tfidf_sentences
+    return tfidf, tfidf_sentences
 
 
 def find_most_similar_sentence(

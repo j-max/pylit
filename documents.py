@@ -17,7 +17,8 @@ class Document:
 
     def __init__(
         self,
-        path_to_document
+        path_to_document,
+        create_sentences=True
     ):
 
         # TODO Add document title -> add to plots as well
@@ -25,9 +26,17 @@ class Document:
         self.document_name = ""
         self.document_string = ""
         self.read_in_document()
-        self.sentences = []
-        self.sentence_count = None
-        self.word_count = None
+        # Creating sentences makes each sentence a Sentence object
+        # which means a long runtime
+        if create_sentences:
+            self.sentences = find_sentences(self.document_string)
+            self.sentence_count = len(self.sentences)
+            self.word_count = self.count_words()
+        else:
+            self.sentences = None
+            self.sentence_count = None
+            self.word_count = None
+
         # TODO add most frequent sentence construction
         # TODO add counts of different types of words
 
@@ -51,6 +60,7 @@ class Document:
         self.sentences = find_sentences(self.document_string)
         self.sentence_count = len(self.sentences)
         
+
     def cumulative_word_count(self):
         """Take a list of sentences, and count new words cumulatively.
  
@@ -155,10 +165,6 @@ class Document:
                 print(sentence)
                 self.date = last_date
     
-
-    
-
-
 
 
 class Corpus:

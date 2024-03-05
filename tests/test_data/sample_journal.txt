@@ -1,0 +1,40 @@
+# March 5th, 2023
+
+I am excited about the Sentence class I coded today.  It seems like it could be a useful tool to help writers explore granular aspects of their writing. It is fun making choices about what parts of a sentence are important, and what attributes a Sentence class should have.
+
+I am a bit worried that I am overengineering this project.  Even if it is, it is good practice in organization.  It is interesting to think about natural language components as Python objects.
+
+# March 8th, 2023
+
+I am excited about having a set of classes that inherit the properties of the Document class.  I will have a journal class which has time-based sentiment analysis.  I will have an essay class which will have a property of a document length goal, as well as a method to identify repeated phrases and ideas.  I will have a poem class which describes number of lines, and perhaps common phonemes.
+
+I wonder if I am actually going to finish this project, or at least get an MVP completed.  I have a lot of ideas, and some coding done, but I question the actual utility of the project.  Will it be useful to anyone other than me?  Will it be useful to me?
+
+# March 18th, 2023, PM
+
+I've taken a bit of time away from this project.  I went to Memphis for a long weekend.  The Civil Rights Museum, Sun Studio, and Stax were incredible.  The soul food at 4 Way and Alcenia's were some of the best meals I've had.
+
+I hope to regain some momentum on this project in the coming weeks.  I'm excited about where the Journal class could be heading.
+
+# March 19th, 2023, AM
+
+I am adding sentiment analysis to the Sentence class.  While I am doing that, I am becoming more familiar with NLTK's functions and classes.  I am worried I might be replicating their work, which would be bad.  But, I am pushing ahead despite my reservations.  I think I will learn something no matter what by working on this project.  Hopefully, it will provide an accurate snapshot of my coding skills. 
+
+# April 2nd, 2023 PM
+
+I'm having trouble keeping momentum on this project, though I think about it fairly often.  I would like to approach it incrementally.  Today, I revisted the Dash App, and will aim to plot a sentiment graph in the middle of the first page of the dashboard.
+
+# April 6th, 2023 PM
+
+Feeling pretty good about adding more journaling functionality to the code base.  I need to add code that parses the dates. I also nee to put in code that extracts sentences with extreme sentiment scores.  These can then be displayed on the dashboard. 
+
+
+# April 9th, 2023 PM
+ 
+Is it a good idea to look at sentiment by day?  It could be interesting to look at cumulative sentament by day, adding the sentiment of the sentences grouped by time stamp.
+
+# March 1st, 2024 AM
+Had a wonderful morning.  The birds were singing.  The sun was shining.  I was excited to go to learn a new dance at Traffic Jam. 
+
+# March 5th, 2024 PM
+I had a very bad day today.  Nothing seemed to go right. 

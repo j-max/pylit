@@ -40,6 +40,7 @@ def count_vectorize_sentences(list_of_sentences):
 
     return cv, cv_sentences
 
+
 def tfidf_vectorize_sentences(list_of_sentences):
 
     """Given a list of sentence objects, tfidf vectorise the sentences
@@ -141,8 +142,11 @@ class Sentence:
             "!": "exclamation"}
         
         # determine the sentence type by the last punctuation token
-        if self.punctuation_marks[-1] in sentence_types:
-            self.type_of_sentence = sentence_types[self.punctuation_marks[-1]]
-        else:
-            self.sentence_type = "undefined"
+        try:
+            if self.punctuation_marks[-1] in sentence_types:
+                self.type_of_sentence = sentence_types[self.punctuation_marks[-1]]
+            else:
+                self.sentence_type = "undefined"
+        except IndexError:
+            self.sentence_string = "undefined"
     

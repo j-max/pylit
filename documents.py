@@ -1,10 +1,10 @@
+import dateutil.parser as dparser
 from pathlib import Path
+import re
 
 from nltk.corpus import stopwords
-
+from nltk.probability import FreqDist
 import pandas as pd
-import re
-import dateutil.parser as dparser
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -179,15 +179,54 @@ class Document:
                 longest_sentence_string = sentence.sentence_string
 
         self.longest_sentence = longest_sentence_string
+
+        return self.longest_sentence
     
+    def find_most_common_word(self):
+
+        all_tokens = []
+        
+        for sentence in self.sentences:
+            all_tokens.extend(sentence.word_tokens)
+
+        # Make words lowercase to allow for correct token counting
+        all_tokens = [token.lower() for token in all_tokens]
+        fd = FreqDist(all_tokens)
+
+        self.most_frequent_word = fd.max()
+        
+        return self.most_frequent_word
+
+    def count_questions(self):
+
+        question_count = 0
+        for sentence in self.sentences:
+            if sentence.type_of_sentence == "question":
+                question_count += 1
+        
+        self.question_count = question_count
+        
+        return self.question_count
+    
+
     def describe(self):
 
-        print(
-            f"""
-            Document Name: {self.document_name}
-            Word count: {self.word_count}
-            Sentence count: {self.sentence_count}
-            Longest sentence: {self.longest_sentence}
-            """
-        )
+        descriptions = {
+            "doc_name": [self.document_name],
+            "word_count": [self.word_count],
+            "sentence_count": [self.sentence_count],
+            "longest_sentence": [self.find_longest_sentence()],
+            "most_common_word": [self.find_most_common_word()],
+            "question_count": [self.count_questions()]
+            
+
+        }
+    
+        # create a dataframe to allow for nice head() output
+        df = pd.DataFrame(descriptions)
+        print(df.head())
+
+        # Return dictionary to allow for concatenation of data in corpus
+        return descriptions
+
 

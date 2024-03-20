@@ -17,7 +17,9 @@ class Document:
 
     def __init__(
         self,
-        path_to_document,
+        read_in_file=True,
+        path_to_document="",
+        document_string="",
         create_sentences=True
     ):
 
@@ -25,7 +27,10 @@ class Document:
         self.path_to_document = path_to_document
         self.document_name = ""
         self.document_string = ""
-        self.read_in_document()
+        if read_in_file:
+            self.read_in_document()
+        else:
+            self.document_string = document_string
         # Creating sentences makes each sentence a Sentence object
         # which means a long runtime
         if create_sentences:

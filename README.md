@@ -1,4 +1,3 @@
-# TODO Add describe methods to sentence/document/corpus class
 
 # Sentiment
 

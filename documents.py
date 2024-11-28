@@ -4,10 +4,11 @@ import re
 
 from nltk.corpus import stopwords
 from nltk.probability import FreqDist
+import numpy as np
 import pandas as pd
 
 import matplotlib.pyplot as plt
-import seaborn as sns
+# import seaborn as sns
 
 from sentences import Sentence
 from sentences import find_sentences
@@ -37,6 +38,7 @@ class Document:
             self.sentences = find_sentences(self.document_string)
             self.sentence_count = len(self.sentences)
             self.word_count = self.count_words()
+            self.total_sentiment = float(np.sum([sentence.sentiment_score for sentence in self.sentences]))
         else:
             self.sentences = None
             self.sentence_count = None
@@ -222,9 +224,8 @@ class Document:
             "sentence_count": [self.sentence_count],
             "longest_sentence": [self.find_longest_sentence()],
             "most_common_word": [self.find_most_common_word()],
-            "question_count": [self.count_questions()]
-            
-
+            "question_count": [self.count_questions()],
+            "total sentiment": [self.total_sentiment]
         }
     
         # create a dataframe to allow for nice head() output

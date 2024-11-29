@@ -38,7 +38,7 @@ class Document:
             self.sentences = find_sentences(self.document_string)
             self.sentence_count = len(self.sentences)
             self.word_count = self.count_words()
-            self.total_sentiment = float(np.sum([sentence.sentiment_score for sentence in self.sentences]))
+            self.avg_sentiment = float(np.mean([sentence.sentiment_score for sentence in self.sentences]))
         else:
             self.sentences = None
             self.sentence_count = None

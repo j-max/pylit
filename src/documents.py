@@ -215,6 +215,26 @@ class Document:
         
         return self.question_count
     
+    def remove_stop_words(self, replace_document_string=False):
+    
+        """
+        remove stop words from all sentences.
+        
+        If replace_document_string=True
+        The original document string will be replace with a string
+        that has no stopwords.
+        """
+        
+        no_stop_document_tokens = []
+        for sentence in self.sentences:
+            sentence.remove_stopwords()
+            if replace_document_string:
+                no_stop_document_tokens.extend(sentence.word_tokens)
+        
+        if replace_document_string:
+            self.document_string = " ".join(no_stop_document_tokens)
+            self.word_count = self.count_words()
+
 
     def describe(self):
 
@@ -225,7 +245,7 @@ class Document:
             "longest_sentence": [self.find_longest_sentence()],
             "most_common_word": [self.find_most_common_word()],
             "question_count": [self.count_questions()],
-            "total sentiment": [self.total_sentiment]
+            "avg sentiment": [self.avg_sentiment]
         }
     
         # create a dataframe to allow for nice head() output
@@ -234,5 +254,4 @@ class Document:
 
         # Return dictionary to allow for concatenation of data in corpus
         return descriptions
-
-
+    

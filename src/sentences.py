@@ -5,6 +5,9 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 from sentiment import calculate_sentence_sentiment
+from nltk.corpus import stopwords
+
+
 
 
 def find_sentences(document_string):
@@ -149,4 +152,16 @@ class Sentence:
                 self.sentence_type = "undefined"
         except IndexError:
             self.sentence_string = "undefined"
-    
+            
+    def remove_stopwords(self):
+        """
+        Remove stopwords from the sentence tokens.  
+        This will replace the original sentence tokens
+        with a list with stopwords removed. 
+
+        """
+        no_stop_tokens = [word for word in self.word_tokens if word.lower() not in stopwords.words('english')]
+
+        self.word_tokens = no_stop_tokens
+
+

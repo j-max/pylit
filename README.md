@@ -1,3 +1,10 @@
+# Pylit
+
+This repo holds a set of Python classes and functions which streamlines text manipulation and analyis.
+
+A Document object is created from a text string.  When instructed to create sentences, each Document is comprised of Sentence objects with various functionality.
+
+By creating the Documents, users can easily see summary information about a text, such as word count, most common words, number of sentences, and a sentiment score.
 
 # Sentiment
 

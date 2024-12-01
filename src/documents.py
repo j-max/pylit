@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 import matplotlib.pyplot as plt
-# import seaborn as sns
+import seaborn as sns
 
 from sentences import Sentence
 from sentences import find_sentences
@@ -215,7 +215,10 @@ class Document:
         
         return self.question_count
     
-    def remove_stop_words(self, replace_document_string=False):
+    def remove_stop_words(
+        self,
+        replace_document_string=False
+    ):
     
         """
         remove stop words from all sentences.

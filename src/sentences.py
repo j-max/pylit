@@ -6,7 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from sentiment import calculate_sentence_sentiment
 from nltk.corpus import stopwords
-
+import nltk
 
 
 
@@ -163,5 +163,10 @@ class Sentence:
         no_stop_tokens = [word for word in self.word_tokens if word.lower() not in stopwords.words('english')]
 
         self.word_tokens = no_stop_tokens
+
+    def pos_tag(self):
+        
+        self.pos_tags = nltk.pos_tag(self.word_tokens)
+        self.sentence_structure = [tag[1] for tag in self.pos_tags]
 
 

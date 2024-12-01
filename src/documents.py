@@ -238,6 +238,10 @@ class Document:
             self.document_string = " ".join(no_stop_document_tokens)
             self.word_count = self.count_words()
 
+    def pos_tag_sentences(self):
+
+        for sentence in self.sentences:
+            sentence.pos_tag()
 
     def describe(self):
 
